@@ -18,7 +18,7 @@
 
 	<div class="container">
 		<h2>Inserir Contato</h2>
-		<form method="POST">
+		<form method="POST" action="/contatos">
 			<div class="form-group">
 				<label for="nome">Nome:</label> <input type="text"
 					class="form-control" id="nome" name="nome">
