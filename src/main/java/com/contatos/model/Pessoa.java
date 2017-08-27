@@ -52,7 +52,7 @@ public class Pessoa {
 	
 	@Override
 	public String toString() {
-		return this.nome + " " + this.endereco + " " + this.telefone + " " + this.email;
+		return this.nome + ";" + this.endereco + ";" + this.telefone + ";" + this.email;
 	}
 
 }
