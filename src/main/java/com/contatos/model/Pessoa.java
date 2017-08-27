@@ -49,5 +49,10 @@ public class Pessoa {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	@Override
+	public String toString() {
+		return this.nome + " " + this.endereco + " " + this.telefone + " " + this.email;
+	}
 
 }
