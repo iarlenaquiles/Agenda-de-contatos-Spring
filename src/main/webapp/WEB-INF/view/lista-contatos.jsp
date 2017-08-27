@@ -12,6 +12,7 @@
 <script src="${url_base}js/jquery.min.js"></script>
 </head>
 <body>
+	<c:import url="header.jsp"></c:import>
 	<div class="container">
 		<c:if test="${not empty mensagem}">
 			<div class="alert alert-success alert-dismissible" role="alert">
