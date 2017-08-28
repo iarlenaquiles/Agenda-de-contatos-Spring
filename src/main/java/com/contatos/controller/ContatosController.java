@@ -21,7 +21,8 @@ public class ContatosController {
 	private PessoaDAO pessoaDao = new PessoaCSVDao();
 
 	@RequestMapping("/")
-	public String listarContatos() {
+	public String listarContatos(Model model) throws IOException {
+		model.addAttribute("contatos", pessoaDao.getLista());
 		return "lista-contatos";
 	}
 
@@ -44,7 +45,7 @@ public class ContatosController {
 		String telefone = request.getParameter("telefone");
 		String email = request.getParameter("email");
 
-		return new Pessoa(nome,endereco,telefone, email);
+		return new Pessoa(nome, endereco, telefone, email);
 	}
 
 }
