@@ -9,6 +9,6 @@ public interface PessoaDAO {
 
 	public void adiciona(Pessoa pessoa) throws IOException;
 
-	public List<Pessoa> getLista();
+	public List<Pessoa> getLista() throws IOException;
 	
 }
