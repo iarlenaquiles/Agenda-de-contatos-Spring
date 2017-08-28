@@ -31,7 +31,7 @@
 
 			<div class="form-group">
 				<label for="telefone">Telefone:</label> <input type="text"
-					class="form-control" id="telefone" name="telefone">
+					class="form-control telefone" id="telefone" name="telefone">
 			</div>
 
 			<div class="form-group">
@@ -46,5 +46,9 @@
 	<br>
 	<br>
 	<script src="${url_base}js/bootstrap.min.js"></script>
+	<script src="${url_base}js/formzin-1.0.4.js"></script>
+	<script type="text/javascript">
+		Formzin.iniciar();
+	</script>
 </body>
 </html>
