@@ -1,46 +1,46 @@
 package com.contatos.dao;
 
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.contatos.config.Propriedades;
 import com.contatos.model.Pessoa;
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
 
 public class PessoaCSVDao implements PessoaDAO {
 	Propriedades p = new Propriedades();
+	String linha = "";
 
 	@Override
 	public void adiciona(Pessoa pessoa) throws IOException {
-		CSVWriter writer = new CSVWriter(new FileWriter(p.getCaminho(), true), ';', '"');
+		FileOutputStream out = new FileOutputStream(p.getCaminho(), true);
+		PrintStream print = new PrintStream(out);
 
-		String[] registro = pessoa.toString().split(";");
-
-		writer.writeNext(registro);
-		writer.close();
-
+		print.println(pessoa.toString());
+		print.close();
 	}
 
 	@Override
 	public List<Pessoa> getLista() throws IOException {
-		CSVReader reader = new CSVReader(new FileReader(p.getCaminho()), ';', '"');
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
-		String[] registro = null;
-		while ((registro = reader.readNext()) != null) {
-			Pessoa p = new Pessoa();
-			p.setNome(registro[0]);
-			p.setEndereco(registro[1]);
-			p.setTelefone(registro[2]);
-			p.setEmail(registro[3]);
 
-			pessoas.add(p);
+		FileInputStream fis = new FileInputStream(p.getCaminho());
+		InputStreamReader isr = new InputStreamReader(fis);
+		BufferedReader buffer = new BufferedReader(isr);
+
+		while ((linha = buffer.readLine()) != null) {
+			String[] pessoa = linha.split(";");
+			pessoas.add(getPessoa(pessoa));
 		}
-
-		reader.close();
 		return pessoas;
+	}
+
+	private Pessoa getPessoa(String[] registro) {
+		return new Pessoa(registro[0], registro[1], registro[2], registro[3]);
 	}
 }
