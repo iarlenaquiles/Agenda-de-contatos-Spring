@@ -18,6 +18,7 @@ public class PessoaCSVDao implements PessoaDAO {
 
 	@Override
 	public void adiciona(Pessoa pessoa) throws IOException {
+		p.criarArquivo();
 		FileOutputStream out = new FileOutputStream(p.getCaminho(), true);
 		PrintStream print = new PrintStream(out);
 
@@ -27,6 +28,7 @@ public class PessoaCSVDao implements PessoaDAO {
 
 	@Override
 	public List<Pessoa> getLista() throws IOException {
+		p.criarArquivo();
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
 
 		FileInputStream fis = new FileInputStream(p.getCaminho());
